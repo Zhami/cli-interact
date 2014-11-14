@@ -35,6 +35,7 @@ Presently, there are three queries:
 
 `getYesNo` prompts for 'y' or 'n', returns true/false. Can be configured to allow no response (returns `undefined`).
 
+And a passthorugh `question` to access the underlying `readlineSync.question` method.
 
 ## Notes
 Uses the [readline-sync](https://github.com/anseki/readline-sync) module. See it for more information.

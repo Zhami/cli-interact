@@ -57,6 +57,10 @@ function getYesNo (title, flagAllowNoAnswer) {
 	return answer;
 }
 
+function question (prompt, options) {
+	return readlineSync.question(prompt, options);
+}
+
 //===========================
 // exports
 //===========================
@@ -65,5 +69,6 @@ exports = module.exports = {
 	getChar				: getChar
 	, getIPversion		: getIPversion
 	, getYesNo			: getYesNo
+	, question			: question
 };
 
