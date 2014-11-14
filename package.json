@@ -36,5 +36,9 @@
       "email": "stuart@EnvisixLabs.com"
     }
   ],
-  "directories": {}
+  "directories": {},
+  "dependencies": {
+    "readline-sync": "~0.4.9"
+  },
+
 }
