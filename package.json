@@ -25,14 +25,14 @@
   },
   "licenses": "MIT",
   "author": {
-    "name": "zhami",
+    "name": "Stuart Malin",
     "url": "https://github.com/zhami",
     "email": "stuart@EnvisixLabs.com"
   },
    "scripts": {},
     "maintainers": [
     {
-      "name": "zhami",
+      "name": "Stuart Malin",
       "email": "stuart@EnvisixLabs.com"
     }
   ],
