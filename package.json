@@ -1,6 +1,6 @@
 {
   "name": "cli-interact",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "cli interact",
   "description": "Simple helper tools for interacting synchronously with user at command line",
   "keywords": [
@@ -39,6 +39,6 @@
   "directories": {},
   "dependencies": {
     "readline-sync": "~0.4.9"
-  },
+  }
 
 }
