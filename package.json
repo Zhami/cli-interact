@@ -1,0 +1,40 @@
+{
+  "name": "cli-interact",
+  "version": "0.1.0",
+  "title": "cli interact",
+  "description": "Simple helper tools for interacting synchronously with user at command line",
+  "keywords": [
+    "readline",
+    "synchronous",
+    "prompt",
+    "question",
+    "wait",
+    "block"
+  ],
+  "main": "./index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "homepage": "https://github.com/zhami/cli-interact",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zhami/cli-interact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zhami/cli-interact/issues"
+  },
+  "licenses": "MIT",
+  "author": {
+    "name": "zhami",
+    "url": "https://github.com/zhami",
+    "email": "stuart@EnvisixLabs.com"
+  },
+   "scripts": {},
+    "maintainers": [
+    {
+      "name": "zhami",
+      "email": "stuart@EnvisixLabs.com"
+    }
+  ],
+  "directories": {},
+}
