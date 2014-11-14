@@ -6,11 +6,15 @@ Simple helper tools for interacting synchronously with user at command line. The
 
 ```js
 var	query = require('cli-interact').getYesNo;
-var answer;
-
-answer = query('Is it true');
-
+var answer = query('Is it true');
 console.log('you answered:', answer);
+```
+
+```
+$ node examples/getYesNoNone.js
+Is it true (y/n)? j
+Is it true (y/n)? y
+you answered: true
 ```
 
 ## Installation

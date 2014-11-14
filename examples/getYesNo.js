@@ -9,8 +9,5 @@
 "use strict";
 
 var	query = require('../index.js').getYesNo;
-var answer;
-
-answer = query('Is it true');
-
+var answer = query('Is it true');
 console.log('you answered:', answer);
