@@ -28,25 +28,8 @@ function getChar (promptText, allowedCharsAsString) {
 	return answer;
 }
 
-function getInteger (promptText) {
-	var answer;
-	var value;
-
-	promptText += ': ';
-	while (true) {
-		answer = readlineSync.question(promptText);
-
-		if (answer === "\u0003") {
-			// Ctl-C
-			process.exit();
-		} else {
-			value = parseInt(answer, 10);
-			if (value.toString() === answer) {
-				break;
-			}
-		}
-	}
-	return value;
+function getInteger (promptText) {				// convenience method
+	return getNumber(promptText, true);
 }
 
 function getIPversion () {
@@ -116,6 +99,7 @@ function question (prompt, options) {
 
 exports = module.exports = {
 	getChar				: getChar
+	, getInteger		: getInteger
 	, getIPversion		: getIPversion
 	, getNumber			: getNumber
 	, getYesNo			: getYesNo
