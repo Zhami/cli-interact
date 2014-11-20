@@ -40,7 +40,6 @@ function getNumber (promptText, flagIntOnly) {
 	var answer;
 	var value;
 
-	promptText += ': ';
 	while (true) {
 		answer = readlineSync.question(promptText);
 
