@@ -28,8 +28,57 @@ function getChar (promptText, allowedCharsAsString) {
 	return answer;
 }
 
+function getInteger (promptText) {
+	var answer;
+	var value;
+
+	promptText += ': ';
+	while (true) {
+		answer = readlineSync.question(promptText);
+
+		if (answer === "\u0003") {
+			// Ctl-C
+			process.exit();
+		} else {
+			value = parseInt(answer, 10);
+			if (value.toString() === answer) {
+				break;
+			}
+		}
+	}
+	return value;
+}
+
 function getIPversion () {
 	return getChar('IP Version', '46');
+}
+
+function getNumber (promptText, flagIntOnly) {
+	var answer;
+	var value;
+
+	promptText += ': ';
+	while (true) {
+		answer = readlineSync.question(promptText);
+
+		if (answer === "\u0003") {
+			// Ctl-C
+			process.exit();
+		} else {
+			if (flagIntOnly) {
+				value = parseInt(answer, 10);
+				if (value.toString() === answer) {
+					break;
+				}
+			} else {
+				value = parseFloat(answer);
+				if (!isNaN(value) && isFinite(answer)) {
+					break;
+				}
+			}
+		}
+	}
+	return value;
 }
 
 function getYesNo (title, flagAllowNoAnswer) {
@@ -68,6 +117,7 @@ function question (prompt, options) {
 exports = module.exports = {
 	getChar				: getChar
 	, getIPversion		: getIPversion
+	, getNumber			: getNumber
 	, getYesNo			: getYesNo
 	, question			: question
 };
