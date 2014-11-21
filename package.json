@@ -1,6 +1,6 @@
 {
   "name": "cli-interact",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "title": "cli interact",
   "description": "Simple helper tools for interacting synchronously with user at command line",
   "keywords": [

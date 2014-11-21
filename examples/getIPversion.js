@@ -11,6 +11,11 @@
 var	query = require('../index.js').getIPversion;
 var answer;
 
-answer = query();
+answer = query(false);
+
+console.log('you answered:', answer);
+
+
+answer = query(true);
 
 console.log('you answered:', answer);

@@ -10,7 +10,7 @@
 
 var readlineSync = require('readline-sync');
 
-function getChar (promptText, allowedCharsAsString) {
+function getChar (promptText, allowedCharsAsString, flagAllowNoAnswer) {
 	var answer;
 
 	promptText += ' (' + allowedCharsAsString.split('').join('/') + ')? ';
@@ -19,6 +19,8 @@ function getChar (promptText, allowedCharsAsString) {
 		if (answer === "\u0003") {
 			// Ctl-C
 			process.exit();
+		} else if (flagAllowNoAnswer && (answer === '')) {
+			break;
 		} else {
 			if (answer.length && (allowedCharsAsString.indexOf(answer) >= 0)) {
 				break;
@@ -32,8 +34,8 @@ function getInteger (promptText) {				// convenience method
 	return getNumber(promptText, true);
 }
 
-function getIPversion () {
-	return getChar('IP Version', '46');
+function getIPversion (flagAllowNoAnswer) {
+	return getChar('IP Version', '46', flagAllowNoAnswer);
 }
 
 function getNumber (promptText, flagIntOnly) {
