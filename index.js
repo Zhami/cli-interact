@@ -30,6 +30,42 @@ function getChar (promptText, allowedCharsAsString, flagAllowNoAnswer) {
 	return answer;
 }
 
+function getChoiceByChar (title, choices, flagAllowNoAnswer) {
+	var answer;
+	var i;
+	var numChoices = choices.length;
+	var parts = ['Select ', title, ' ('];
+	var queryText;
+	var str;
+	var value;
+
+	for (i = 1; i <= numChoices; i += 1) {	// display 1 based to user
+		parts.push(i);
+		parts.push('=');
+		parts.push(choices[i - 1]);			// choices array is 0-based
+		parts.push('; '); 
+	}
+	parts.pop();	// get rid of trailing ';'
+	parts.push(') ?');
+
+	queryText = parts.join('');
+
+	while (true) {
+		answer = readlineSync.question(queryText);
+		if (answer === "\u0003") {
+			// Ctl-C
+			process.exit();
+		} else if (flagAllowNoAnswer && (answer === '')) {
+			return answer;
+		} else {
+			value = parseInt(answer, 10);
+			if ((value >= 1) && (value <= numChoices)) {
+				return choices[value - 1];		// user input is 1-based; choices array is 0-based
+			}
+		}
+	}
+}
+
 function getInteger (promptText) {				// convenience method
 	return getNumber(promptText, true);
 }
@@ -67,7 +103,7 @@ function getNumber (promptText, flagIntOnly) {
 
 function getYesNo (title, flagAllowNoAnswer) {
 	var answer;
-	var queryText = title + ' (y/n)? '
+	var queryText = title + ' (y/n)? ';
 	while (true) {
 		answer = readlineSync.question(queryText);
 		if (answer === "\u0003") {
@@ -100,6 +136,7 @@ function question (prompt, options) {
 
 exports = module.exports = {
 	getChar				: getChar
+	, getChoiceByChar	: getChoiceByChar
 	, getInteger		: getInteger
 	, getIPversion		: getIPversion
 	, getNumber			: getNumber
