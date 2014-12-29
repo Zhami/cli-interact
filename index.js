@@ -30,6 +30,60 @@ function getChar (promptText, allowedCharsAsString, flagAllowNoAnswer) {
 	return answer;
 }
 
+function getChoice (title, choices, opts) {
+	var answer;
+	var flagAllowNoAnswer;
+	var flagReturnNumber;
+	var i;
+	var numChoices = choices.length;
+	var parts = ['Select ', title, ' ('];
+	var queryText;
+	var str;
+	var temp;
+	var value;
+
+	if (opts) {
+		if (opts.allowNoAnswer) {
+			flagAllowNoAnswer = true;
+		}
+		if (opts.returnNumber) {
+			flagReturnNumber = true;
+		}
+	}
+
+	for (i = 1; i <= numChoices; i += 1) {	// display 1 based to user
+		parts.push(i);
+		parts.push('=');
+		parts.push(choices[i - 1]);			// choices array is 0-based
+		parts.push('; '); 
+	}
+	parts.pop();	// get rid of trailing ';'
+	parts.push(') ?');
+
+	queryText = parts.join('');
+
+	while (true) {
+		answer = readlineSync.question(queryText);
+		if (answer === "\u0003") {
+			// Ctl-C
+			process.exit();
+		} else if (flagAllowNoAnswer && (answer === '')) {
+			return answer;
+		} else {
+			value = parseInt(answer, 10);
+			if ((value >= 1) && (value <= numChoices)) {
+				value -= 1;						// user input is 1-based; choices array is 0-based
+				if (flagReturnNumber) {
+					return value;
+				} else {
+					return choices[value];		
+				}
+			}
+		}
+	}
+}
+
+
 function getChoiceByChar (title, choices, flagAllowNoAnswer) {
 	var answer;
 	var i;
@@ -136,6 +190,7 @@ function question (prompt, options) {
 
 exports = module.exports = {
 	getChar				: getChar
+	, getChoice			: getChoice
 	, getChoiceByChar	: getChoiceByChar
 	, getInteger		: getInteger
 	, getIPversion		: getIPversion
