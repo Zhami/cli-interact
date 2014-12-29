@@ -33,7 +33,7 @@ function getChar (promptText, allowedCharsAsString, flagAllowNoAnswer) {
 function getChoice (title, choices, opts) {
 	var answer;
 	var flagAllowNoAnswer;
-	var flagReturnNumber;
+	var flagReturnNumeric;
 	var i;
 	var numChoices = choices.length;
 	var parts = ['Select ', title, ' ('];
@@ -46,8 +46,8 @@ function getChoice (title, choices, opts) {
 		if (opts.allowNoAnswer) {
 			flagAllowNoAnswer = true;
 		}
-		if (opts.returnNumber) {
-			flagReturnNumber = true;
+		if (opts.returnNumeric) {
+			flagReturnNumeric = true;
 		}
 	}
 
@@ -72,11 +72,10 @@ function getChoice (title, choices, opts) {
 		} else {
 			value = parseInt(answer, 10);
 			if ((value >= 1) && (value <= numChoices)) {
-				value -= 1;						// user input is 1-based; choices array is 0-based
-				if (flagReturnNumber) {
+				if (flagReturnNumeric) {
 					return value;
 				} else {
-					return choices[value];		
+					return choices[value - 1];		// user input is 1-based; choices array is 0-based
 				}
 			}
 		}
