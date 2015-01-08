@@ -127,9 +127,20 @@ function getIPversion (flagAllowNoAnswer) {
 	return getChar('IP Version', '46', flagAllowNoAnswer);
 }
 
-function getNumber (promptText, flagIntOnly) {
+function getNumber (promptText, opts) {
 	var answer;
+	var flagIntOnly;
+	var flagAllowNoAnswer;
 	var value;
+
+	// for historical compatibility
+	if (opts === true) {
+		flagIntOnly = true;
+	} else if (opts) {
+		// better be an object;
+		flagIntOnly = opts.requireInteger;
+		flagAllowNoAnswer = opts.allowNoAnswer
+	}
 
 	while (true) {
 		answer = readlineSync.question(promptText);
@@ -137,6 +148,8 @@ function getNumber (promptText, flagIntOnly) {
 		if (answer === "\u0003") {
 			// Ctl-C
 			process.exit();
+		} else if (flagAllowNoAnswer && (answer === '')) {
+			break;
 		} else {
 			if (flagIntOnly) {
 				value = parseInt(answer, 10);
